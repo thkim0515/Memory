@@ -1,0 +1,107 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Site.master.cs" Inherits="Site" %>
+
+<!DOCTYPE html>
+
+<html lang="ko">
+<head runat="server">
+    <style>
+        .hrtag {
+            background-color: black;
+        }
+    </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale-1.0" />
+    <title>중헌책에 오신걸 환영합니다.</title>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+
+    <asp:ContentPlaceHolder ID="HeaderContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <header>
+            <div id="header_width">
+                <asp:ImageButton ID="ImageButton1" ImageUrl="Images/logo_header.png" OnClick="Btn_Click" Width="100%" Height="330px" runat="server" />
+            </div>
+        </header>
+        <%-- 네비게이션 부분 --%>
+        <nav class="navbar navbar-expand-lg bg-secondary text-uppercase" id="mainNav">
+            <div class="container">
+                <div class="navbar-header float-left">
+                    <ul class="navbar-nav ml-auto ">
+                        <li class="nav-item mx-0 mx-lg-1"><a id="kk1" class="nav-link py-3 px-5 px-lg-5" href="sell.aspx">판매하기</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a id="kk1" class="nav-link py-3 px-5 px-lg-5" href="sellpost.aspx">구매하기</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a id="kk1" class="nav-link py-3 px-5 px-lg-5" href="request_Board.aspx">요청게시판</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a id="kk1" class="nav-link py-3 px-5 px-lg-5" href="fnq.aspx">QnA</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a id="kk1" class="nav-link py-3 px-5 px-lg-5" href="#contact">신고게시판</a></li>
+                        <%--<li class="nav-item mx-0 mx-lg-1"><a id="kk1" class="nav-link py-3 px-5 px-lg-5" href="#contact">마이페이지</a></li>--%>
+                        <%--<li class="nav-item mx-0 mx-lg-1"><a id="kk1" class="nav-link py-3 px-5 px-lg-5" href="signup.aspx">회원가입</a></li>--%>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <%--왼쪽 로그인 부분 --%>
+        <div class="row py-3">
+            <div class="col-md-2 offset-sm-1 ">
+                <%--로그인박스--%>
+                <div class="aside">
+                    <section id="section_login">
+                        <div id="section_login_div">
+                            <%--로그인 관련 텍스트 박스 , 버튼--%>
+                            <asp:TextBox ID="Login_ID" runat="server" TextMode="SingleLine" placeholder="ID" MaxLength="15" CssClass="section_login_textbox"></asp:TextBox>
+                            <asp:TextBox ID="Login_PWD" runat="server" TextMode="Password" placeholder="Password" MaxLength="15" CssClass="section_login_textbox"></asp:TextBox><br />
+                            <div runat="server" id="infoLink">
+                                <asp:HyperLink ID="hyper_signup" runat="server" NavigateUrl="~/ASP_Project2/signup.aspx"> 회원가입 l </asp:HyperLink>
+                                <asp:HyperLink ID="hyper_FID" runat="server" NavigateUrl="~/ASP_Project2/signup.aspx"> 아이디찾기 l </asp:HyperLink>
+                                <asp:HyperLink ID="hyper_FPWD" runat="server" NavigateUrl="~/ASP_Project2/signup.aspx"> 패스워드찾기  </asp:HyperLink>
+                            </div>
+                            <%--각 버튼--%>
+                            <asp:Button ID="Btn_Log" runat="server" Text="로그인" CssClass="section_login_button" OnClick="Login_button" /><br />
+                            <asp:Label runat="server" Visible="true" ID="Nickname" Text="" CssClass="nickname"></asp:Label><br />
+                            <asp:Button Visible="false" ID="Btn_Mypage" runat="server" Text="마이페이지" CssClass="section_user_button" />
+                            <asp:Button Visible="false" ID="Btn_Admin" runat="server" Text="회원관리" CssClass="section_user_button" OnClick="Btn_Admin_Click" />
+                            <asp:Button ID="Btn_Logout" runat="server" Text="로그아웃" CssClass="section_user_button" OnClick="Btn_Logout_Click" />
+                            <asp:Label runat="server" ID="testlabel"></asp:Label>
+                            <%--세션값을 위한 히든필드--%>
+                            <asp:HiddenField runat="server" ID="supercheck" />
+                            <asp:HiddenField runat="server" ID="getnick" />
+                            <asp:HiddenField runat="server" ID="getsuper" />
+                            <asp:HiddenField runat="server" ID="getemail" />
+                            <asp:HiddenField runat="server" ID="getid" />
+                        </div>
+                    </section>
+                    <%--<section id="section_search">
+                        <검색기능-
+                        <asp:TextBox ID="SearchBox" runat="server" TextMode="SingleLine" placeholder="검색할 내용을 입력해주세요." CssClass="section_search_textbox"></asp:TextBox>
+                        <asp:Button runat="server" Text="검색" CssClass="section_search_button" OnClick="Search_Click" />
+                        <asp:Label runat="server" ID="testTitle"></asp:Label>
+                    </section>--%>
+                </div>
+            </div>
+            <%--오른쪽 메인 부분 --%>
+            <div class="col-sm-9">
+                <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+        </div>
+        <footer>
+            <div id="footer_div">
+                <asp:Image runat="server" ImageUrl="icon/footer로고.png" Width="350px" Height="180px" CssClass="footer_img"/>
+                <div id="footer_Hyp">
+                    <asp:HyperLink ID="siteinfo" runat="server" NavigateUrl="#"> 사이트소개 l </asp:HyperLink>
+                    <asp:HyperLink ID="terms" runat="server" NavigateUrl="#"> 이용약관 l </asp:HyperLink>
+                    <asp:HyperLink ID="privacy" runat="server" NavigateUrl="#"> 개인정보취급방침 l </asp:HyperLink>
+                    <asp:HyperLink ID="serviceCenter" runat="server" NavigateUrl="#"> 고객센터 l </asp:HyperLink><br />
+                    <asp:Label runat="server" Text="Copyright @ 2020 유한대학교 IT소프트웨어공학과 5조 - ASP.NET 팀 프로젝트"></asp:Label>
+                </div>
+                
+            </div>
+        </footer>
+        <script src="Scripts/jquery-3.0.0.js"></script>
+        <script src="Scripts/bootstrap.js"></script>
+        <asp:ContentPlaceHolder ID="FooterContent" runat="server">
+        </asp:ContentPlaceHolder>
+    </form>
+</body>
+</html>
