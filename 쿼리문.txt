@@ -67,13 +67,11 @@ insert into userinfo (id,password,nickname,name,birth,phone,address,email,super)
 insert into sellpost (name,email,title,contents,writedate,readcount,price)
  values ('Test','abcd@yuhan.ac.kr','제목테스트','내용테스트','2020.03.01',0,500);
 
-
 insert into requestpost (name,title,contents,writedate,readcount)
  values ('Test','제목테스트','내용테스트','2020.03.01',0);
 
 insert into report (name,title,contents,writedate)
  values ('Test','제목테스트','내용테스트','2020.03.01');
-
 
 insert into reply (nickname,comment,writedate,postnumber)
  values ('Test','댓글테스트','2020.03.01',1);
