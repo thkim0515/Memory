@@ -1,0 +1,77 @@
+ // - - - - 각 테이블의 num 컬럼은 IDentity 값 '예'로 설정
+create table reply (
+ num int PRIMARY KEY,
+ nickname varchar(20),
+ comment ntext,
+ writedate varchar(20),
+ postnumber int);
+
+
+create table report (
+ num int PRIMARY KEY,
+ name varchar(20) NOT NULL,
+ pass varchar(20),
+ email varchar(30),
+ title varchar(50) NOT NULL,
+ contents ntext NOT NULL,
+ writedate varchar(30) NOT NULL);
+
+
+create table requestpost (
+ num int PRIMARY KEY,
+ name varchar(20) NOT NULL,
+ pass varchar(30),
+ email varchar(20),
+ title varchar(50) NOT NULL,
+ contents ntext NOT NULL,
+ writedate varchar(30) NOT NULL,
+ readcount int NOT NULL,
+ image varchar(100),
+ gopublic varchar(20));
+
+
+create table sellpost (
+ num int PRIMARY KEY,
+ name varchar(20) NOT NULL,
+ pass varchar(20),
+ email varchar(30) NOT NULL,
+ title varchar(50) NOT NULL,
+ contents ntext NOT NULL,
+ writedate varchar(30) NOT NULL,
+ readcount int NOT NULL,
+ image varchar(50),
+ price int);
+
+
+create table userinfo (
+ id varchar(20) PRIMARY KEY,
+ password varchar(20) NOT NULL,
+ nickname varchar(20) NOT NULL,
+ name varchar(20) NOT NULL,
+ birth varchar(20) NOT NULL,
+ phone varchar(20) NOT NULL,
+ address varchar(100) NOT NULL,
+ email varchar(50) NOT NULL,
+ school varchar(20),
+ major varchar(20),
+ laatitude int,
+ longitude int,
+ super varchar(20));
+ 
+ 
+
+-------------------------------------------------------------------------
+insert into userinfo (id,password,nickname,name,birth,phone,address,email,super)
+ values ('Test','1234','테스트','테스트','2020.03.01','010-1111-2222','자기지역','abcd@yuhan.ac.kr','관리자');
+
+insert into sellpost (name,email,title,contents,writedate,readcount,price)
+ values ('Test','abcd@yuhan.ac.kr','제목테스트','내용테스트','2020.03.01',0,500);
+
+insert into requestpost (name,title,contents,writedate,readcount)
+ values ('Test','제목테스트','내용테스트','2020.03.01',0);
+
+insert into report (name,title,contents,writedate)
+ values ('Test','제목테스트','내용테스트','2020.03.01');
+
+insert into reply (nickname,comment,writedate,postnumber)
+ values ('Test','댓글테스트','2020.03.01',1);
